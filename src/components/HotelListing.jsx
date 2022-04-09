@@ -1,9 +1,13 @@
 import HotelListItem from "./HotelListItem";
 import HotelContext from "../context/HotelContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 function HotelListing() {
-  const { hotelList } = useContext(HotelContext);
+  const { hotelList, getHotelList } = useContext(HotelContext);
+
+  useEffect(() => {
+    getHotelList();
+  }, [hotelList]);
 
   return (
     <div className="hotel-list-container">

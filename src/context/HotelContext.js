@@ -7,10 +7,12 @@ export const HotelProvider = ({ children }) => {
 
   useEffect(() => {
     getHotelList();
-  }, []);
+  }, [hotelList]);
 
   const getHotelList = () => {
-    const hotelList = JSON.parse(window.localStorage.getItem("hotel-information") || '[]');
+    const hotelList = JSON.parse(
+      window.localStorage.getItem("hotel-information") || "[]"
+    );
 
     setHotelList(hotelList);
   };
@@ -21,14 +23,33 @@ export const HotelProvider = ({ children }) => {
     updateStorage();
   };
 
+  const editHotel = (isDecreased, selectedHotel) => {
+    const hotelName = selectedHotel[0].textContent.toLowerCase();
+    let hotelPoint = Number(selectedHotel[1].textContent);
+
+    if (isDecreased) {
+      hotelPoint--;
+    } else {
+      hotelPoint++;
+    }
+
+    hotelList.forEach(hotel => {
+      if (hotel.name.toLowerCase() === hotelName) {
+        hotel.point = hotelPoint;
+      }
+    });
+
+    setHotelList(hotelList);
+    updateStorage();
+  };
+
   const updateStorage = () => {
-    window.localStorage.setItem('hotel-information', JSON.stringify(hotelList));
-  }
+    window.localStorage.setItem("hotel-information", JSON.stringify(hotelList));
+  };
 
   const deleteHotel = async (id) => {
     // if (window.confirm("Are you sure you want to delete this item?")) {
     //   await fetch(`http://localhost:5000/feedback/${id}`, { method: "DELETE" });
-
     //   setHotelList(hotelList.filter((item) => item.id !== id));
     // }
   };
@@ -37,8 +58,10 @@ export const HotelProvider = ({ children }) => {
     <HotelContext.Provider
       value={{
         hotelList,
+        getHotelList,
         deleteHotel,
         addHotel,
+        editHotel,
       }}
     >
       {children}
