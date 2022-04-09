@@ -8,7 +8,7 @@ function HotelListing() {
   return (
     <div className="hotel-list-container">
       {hotelList.length &&
-        hotelList.map((hotelData, index) => {
+        hotelList.reverse().map((hotelData, index) => {
           return (
             <HotelListItem key={index} hotelData={hotelData} index={index} />
           );

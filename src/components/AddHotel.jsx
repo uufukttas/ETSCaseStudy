@@ -3,7 +3,7 @@ import HotelContext from "../context/HotelContext";
 
 function AddHotel() {
   const [text, setText] = useState("");
-  const { hotelList, addHotel } = useContext(HotelContext);
+  const { addHotel } = useContext(HotelContext);
 
   const handleChange = (event) => {
     setText(event.target.value);
@@ -21,6 +21,12 @@ function AddHotel() {
     addHotel(newHotel);
     setText("");
 
+    setTimeout(() => {
+      document.getElementById('submit').value = 'EKLENDI';
+      document.getElementById('submit').classList.remove('bg-blue-500', 'hover:bg-blue-700');
+      document.getElementById('submit').classList.add('bg-green-700');
+    }, 200);
+
   };
 
   return (
@@ -29,6 +35,7 @@ function AddHotel() {
       <form className="flex flex-col" onSubmit={handleSubmit}>
         <input type="text" value={text} onChange={handleChange} />
         <input
+          id="submit"
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3"
           value="EKLE"
