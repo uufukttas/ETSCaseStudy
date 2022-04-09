@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HotelAddButton from "./components/HotelAddButton";
+import OrderButton from "./components/OrderButton";
+import HotelListing from "./components/HotelListing";
+import Pagination from "./components/Pagination";
+import AddHotel from "./components/AddHotel";
+import { HotelProvider } from "./context/HotelContext";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HotelProvider>
+      <Router>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <>
+                <div className="app-container">
+                  <HotelAddButton />
+                  <OrderButton />
+                  <HotelListing />
+                  <Pagination />
+                </div>
+              </>
+            }
+          ></Route>
+          <Route exact path="/add-hotel" element={<AddHotel />}></Route>
+        </Routes>
+      </Router>
+    </HotelProvider>
   );
 }
 
