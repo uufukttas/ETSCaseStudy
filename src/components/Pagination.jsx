@@ -1,6 +1,6 @@
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
-export default function Example() {
+function Pagination() {
   return (
     <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
       <div className="flex-1 flex justify-between sm:hidden">
@@ -91,3 +91,5 @@ export default function Example() {
     </div>
   );
 }
+
+export default Pagination;

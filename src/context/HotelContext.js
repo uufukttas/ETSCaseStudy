@@ -4,6 +4,7 @@ const HotelContext = createContext();
 
 export const HotelProvider = ({ children }) => {
   const [hotelList, setHotelList] = useState([]);
+  const [isVisiblePopUp, setIsVisiblePopUp] = useState(false);
 
   useEffect(() => {
     getHotelList();
@@ -58,10 +59,13 @@ export const HotelProvider = ({ children }) => {
     <HotelContext.Provider
       value={{
         hotelList,
+        isVisiblePopUp,
+        setIsVisiblePopUp,
         getHotelList,
         deleteHotel,
         addHotel,
         editHotel,
+        setHotelList,
       }}
     >
       {children}

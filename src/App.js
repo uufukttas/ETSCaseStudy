@@ -5,6 +5,7 @@ import HotelListing from "./components/HotelListing";
 import Pagination from "./components/Pagination";
 import AddHotel from "./components/AddHotel";
 import { HotelProvider } from "./context/HotelContext";
+import DeletePopUp from "./components/DeletePopUp";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                   <OrderButton />
                   <HotelListing />
                   <Pagination />
+                  <DeletePopUp />
                 </div>
               </>
             }

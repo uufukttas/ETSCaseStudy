@@ -7,7 +7,7 @@ function HotelListing() {
 
   useEffect(() => {
     getHotelList();
-  }, [hotelList]);
+  }, []);
 
   return (
     <div className="hotel-list-container">
